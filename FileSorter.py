@@ -17,21 +17,19 @@ def sort_files(path):
             else:
                 pass
             sorted_dict[ext].append([file])
-
     print(sorted_dict)
     for key in sorted_dict.keys():
-        ##print(f"Key: {key}")
         pkey = path+key
-        if os.path.isfile(pkey) or os.path.isdir(pkey):
-            continue
-        if not os.path.isdir(pkey):
+        if not os.path.isdir(path+key):
             os.mkdir(pkey)
         for a in sorted_dict.get(key):
             for b in a:
                 if os.path.isfile(path+str(b)):
                     os.rename(path + str(b), path + str(key) + '/' + str(b))
+        else:
+            continue
 
 
 if __name__ == "__main__":
-    fdir = "C:/Users/XX/YY/"
+    fdir = "C:/Users/Serge/Desktop/FF/"
     sort_files(fdir)
